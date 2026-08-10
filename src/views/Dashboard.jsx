@@ -46,7 +46,6 @@ const Dashboard = ()=>{
                                 id={f.file_id_aris} circum={f.circumference} weight={f.weight} lane={f.gate} outputreason={f.outputreason}
 
 
-
                             </li>
                         ))}
                     </ul>
