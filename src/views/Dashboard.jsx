@@ -15,7 +15,7 @@ const Dashboard = ()=>{
             if (!res.ok) throw new Error('Request failed');
             return res.json();
         })
-        .then(data => setItems(data))
+        .then(data => setFish(data))
         .catch(err => setError(err.message))
         .finally(() => setLoading(false));
     }, []);
