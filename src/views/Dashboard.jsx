@@ -10,7 +10,7 @@ const Dashboard = ()=>{
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch('/api/user/fish')
+        fetch('http:localhost:5000/api/user/fish')
         .then(res => {
             if (!res.ok) throw new Error('Request failed');
             return res.json();
