@@ -10,7 +10,7 @@ const Dashboard = ()=>{
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch('http:localhost:5000/api/user/fish')
+        fetch('http://localhost:5000/api/user/fish')
         .then(res => {
             if (!res.ok) throw new Error('Request failed');
             return res.json();
@@ -42,7 +42,7 @@ const Dashboard = ()=>{
                     <h2>Fish</h2>
                     <ul>
                         {fish.map(f =>(
-                            <li key={whooshh_id}>{fish}</li>
+                            <li key={f.whooshh_id}>{fish}</li>
                         ))}
                     </ul>
                 </div>
