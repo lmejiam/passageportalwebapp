@@ -43,9 +43,7 @@ const Dashboard = ()=>{
                     <ul>
                         {fish.map(f =>(
                             <li key={f.whooshh_id}>
-                                id={f.file_id_aris} circum={f.circumference} weight={f.weight} lane={f.gate} outputreason={f.outputreason}
-
-
+                                id-{f.file_id_aris} circum-{f.circumference} weight-{f.weight} lane-{f.gate} outputreason-{f.outputreason}
                             </li>
                         ))}
                     </ul>
