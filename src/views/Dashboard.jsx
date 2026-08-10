@@ -42,7 +42,7 @@ const Dashboard = ()=>{
                     <h2>Fish</h2>
                     <ul>
                         {fish.map(f =>(
-                            <li key={f.whooshh_id}>{fish}</li>
+                            <li key={f.whooshh_id}>{f}</li>
                         ))}
                     </ul>
                 </div>
