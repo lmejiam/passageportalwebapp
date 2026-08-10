@@ -5,6 +5,29 @@ import { useNavigate, Link } from "react-router-dom";
 
 const Dashboard = ()=>{
     
+    const [fish, setFish] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/api/user/fish')
+        .then(res => {
+            if (!res.ok) throw new Error('Request failed');
+            return res.json();
+        })
+        .then(data => setItems(data))
+        .catch(err => setError(err.message))
+        .finally(() => setLoading(false));
+    }, []);
+    
+    
+    
+    
+    
+    
+    
+    
+    
     return(
         <>
         <div className='flex justify-center items-center bg-darkgray p-20 pb-30' >
@@ -14,6 +37,14 @@ const Dashboard = ()=>{
                 </div>
                 <div className="flex justify-center m-10 mb-5">
                     <h1 className= "text-black text-2xl font-mono">DASHBOARD</h1>
+                </div>
+                <div className="flex justify-center">
+                    <h2>Fish</h2>
+                    <ul>
+                        {fish.map(f =>(
+                            <li key={whooshh_id}>{fish}</li>
+                        ))}
+                    </ul>
                 </div>
                 
 
