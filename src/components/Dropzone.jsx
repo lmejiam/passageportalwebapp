@@ -17,11 +17,13 @@ const Dropzone = () => {
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ 
             onDrop,
-            maxFiles: 2,
+            maxFiles: 1,
             multiple: false,
             accept: {
-                        "text/plain": [".txt", ".ini", ".config"],
-                        "application/octet-stream": [".ini", ".config"],
+                        "text/plain": [".txt", ".ini", ".config",".csv"],
+                        "application/octet-stream": [".ini", ".config",".csv"],
+                        "text/csv": [".csv"],
+                        "application/vnd.ms-excel": [".csv"]
             }
         })
 
