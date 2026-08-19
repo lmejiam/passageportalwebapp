@@ -47,7 +47,7 @@ const Dashboard = ()=>{
                         <h1 className= "text-black text-2xl font-mono">DASHBOARD</h1>
 
                         <table>
-                            <thead className="text-xl font-bold font-mono border-2 border-whooshhgreen">
+                            <thead className="flex justify-between items-center text-xl font-bold font-mono border-2 border-whooshhgreen">
                                 <th>TAG NUMBER</th>
                                 <th>PRIORITY</th>
                                 <th>CIRCUMFERENCE</th>
@@ -59,7 +59,7 @@ const Dashboard = ()=>{
                             </thead>
                             <tbody>
                                 {fish.map(f =>(
-                                    <tr key={f.whooshh_id}>
+                                    <tr key={f.whooshh_id} className="flex justify-between items-center">
                                         <td>{f.tag_num}</td>
                                         <td>{f.priority}</td>
                                         <td>{f.circumference}</td>
