@@ -17,7 +17,7 @@ const Dashboard = ()=>{
     useEffect(() => {
 
         const fetchFish = ()=> {
-                fetch('http://whooshh-controls.flashhub.net/api/user/fish')
+                fetch('http://fishlrecognition.com/api/user/fish')
             .then(res => {
                 if (!res.ok) throw new Error('Request failed');
                 return res.json();

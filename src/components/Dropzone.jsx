@@ -47,7 +47,7 @@ const Dropzone = () => {
     });
 
     try {
-        const response = await fetch("http://whooshh-controls.flashhub.net/api/tags/upload", {
+        const response = await fetch("http://fishlrecognition.com/api/tags/upload", {
             method: "POST",
             body: formData,
         });
