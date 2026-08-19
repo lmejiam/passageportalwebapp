@@ -60,14 +60,14 @@ const Dashboard = ()=>{
                             <tbody>
                                 {fish.map(f =>(
                                     <tr key={f.whooshh_id} className="flex justify-between items-center">
-                                        <td>{f.tag_num}</td>
-                                        <td>{f.priority}</td>
-                                        <td>{f.circumference}</td>
-                                        <td>{f.weight}</td>
-                                        <td>{f.gate}</td>
-                                        <td>{f.outputlane}</td>
-                                        <td>{f.outputlanereason}</td>
-                                        <td>{f.timestamp}</td>
+                                        <td className="p-5">{f.tag_num}</td>
+                                        <td className="p-5">{f.priority}</td>
+                                        <td className="p-5">{f.circumference}</td>
+                                        <td className="p-5">{f.weight}</td>
+                                        <td className="p-5">{f.gate}</td>
+                                        <td className="p-5">{f.outputlane}</td>
+                                        <td className="p-5">{f.outputlanereason}</td>
+                                        <td className="p-5">{f.timestamp}</td>
                                     </tr>
                                 ))}
                             </tbody>
