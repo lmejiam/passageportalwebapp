@@ -45,14 +45,34 @@ const Dashboard = ()=>{
                 <div className="flex justify-between p-10">
                     <div className="w-300  text-center">
                         <h1 className= "text-black text-2xl font-mono">DASHBOARD</h1>
-                        <ul className="border-2 border-whooshhgreen rounded-2xl bg-white w-300 h-100">
-                            {fish.map(f =>(
-                                <li key={f.whooshh_id}>
-                                    id-{f.file_id_aris} circum-{f.circumference} weight-{f.weight} lane-{f.gate} outputreason-{f.outputreason}
-                                </li>
-                            ))}
-                            <li></li>
-                        </ul>
+
+                        <table>
+                            <thead className="text-xl font-bold font-mono border-2 border-whooshhgreen">
+                                <th>TAG NUMBER</th>
+                                <th>PRIORITY</th>
+                                <th>CIRCUMFERENCE</th>
+                                <th>WEIGHT</th>
+                                <th>GATE</th>
+                                <th>OUTPUTLANE</th>
+                                <th>SORT INFO</th>
+                                <th>TIMESTAMP</th>
+                            </thead>
+                            <tbody>
+                                {fish.map(f =>(
+                                    <tr key={f.whooshh_id}>
+                                        <td>{f.tag_num}</td>
+                                        <td>{f.priority}</td>
+                                        <td>{f.circumference}</td>
+                                        <td>{f.weight}</td>
+                                        <td>{f.gate}</td>
+                                        <td>{f.outputlane}</td>
+                                        <td>{f.outputlanereason}</td>
+                                        <td>{f.timestamp}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        
                     </div>
                     <div>
                         <h2 className="text-2xl text-center">Priority Tag File</h2>
