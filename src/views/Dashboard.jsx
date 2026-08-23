@@ -44,33 +44,33 @@ const Dashboard = ()=>{
         
         
         <div className='flex justify-center items-center bg-darkgray p-12 w-full' >
-            <div className="bg-lightgray border-3 border-black rounded-lg p-5 w-full">
+            <div className="bg-lightgray border-3 border-black rounded-lg p-5 pl-10 w-full">
                 <div className="flex justify-between">
                     <div className="w-300  text-center">
                         <h1 className= "text-black text-2xl font-mono">DASHBOARD</h1>
 
                         <table>
-                            <thead className="flex justify-between w-fit items-center text-m font-bold font-mono border-2 border-whooshhgreen">
-                                <th className="w-40 p-2 border-2 border-black">TAG NUMBER</th>
-                                <th className="w-40 p-2 border-2 border-black">PRIORITY</th>
-                                <th className="w-40 p-2 border-2 border-black">CIRCUM</th>
+                            <thead className="flex justify-between w-fit items-center text-m text-center font-bold font-mono border-2 border-whooshhgreen">
+                                <th className="w-60 p-2 border-2 border-black">TAG NUMBER</th>
+                                <th className="w-20 p-2 border-2 border-black">PRTY</th>
+                                <th className="w-40 p-2 border-2 border-black">CIRCUMFERENCE</th>
                                 <th className="w-40 p-2 border-2 border-black">WEIGHT</th>
-                                <th className="w-40 p-2 border-2 border-black">GATE</th>
-                                <th className="w-40 p-2 border-2 border-black">OUTPUTLANE</th>
+                                <th className="w-30 p-2 border-2 border-black">LANEREQ</th>
+                                <th className="w-20 p-2 border-2 border-black">LANE</th>
                                 <th className="w-40 p-2 border-2 border-black">SORT INFO</th>
                                 <th className="w-40 p-2 border-2 border-black">TIMESTAMP</th>
                             </thead>
                             <tbody>
                                 {fish.map(f =>(
-                                    <tr key={f.whooshh_id} className="flex justify-between items-center text-xs">
-                                        <td className="w-40 p-2 border-2 border-black">{f.tag_num}</td>
-                                        <td className="w-40 p-2 border-2 border-black">{f.priority}</td>
-                                        <td className="w-40 p-2 border-2 border-black">{f.circumference}</td>
-                                        <td className="w-40 p-2 border-2 border-black">{f.weight}</td>
-                                        <td className="w-40 p-2 border-2 border-black">{f.gate}</td>
-                                        <td className="w-40 p-2 border-2 border-black">{f.outputlane}</td>
-                                        <td className="w-40 p-2 border-2 border-black">{f.outputlanereason}</td>
-                                        <td className="w-40 p-2 border-2 border-black">{f.timestamp}</td>
+                                    <tr key={f.whooshh_id} className="flex justify-between items-center text-sm">
+                                        <td className="w-60 mt-10 mb-10">{f.tag_num}</td>
+                                        <td className="w-20">{f.priority}</td>
+                                        <td className="w-40">{f.circumference}</td>
+                                        <td className="w-40">{f.weight}</td>
+                                        <td className="w-30">{f.gate}</td>
+                                        <td className="w-20">{f.outputlane}</td>
+                                        <td className="w-40">{f.outputlanereason}</td>
+                                        <td className="w-40">{f.timestamp}</td>
                                     </tr>
                                 ))}
                             </tbody>
