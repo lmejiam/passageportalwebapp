@@ -8,7 +8,7 @@ import Dropzone from "../components/Dropzone";
 
 const Dashboard = ()=>{
 
-    const FETCH_FISH_INTERVAL_MS = 5000;
+    const FETCH_FISH_INTERVAL_MS = 3000;
     
     const [fish, setFish] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -46,19 +46,22 @@ const Dashboard = ()=>{
         <div className='flex justify-center items-center bg-darkgray p-12 w-full' >
             <div className="bg-lightgray border-3 border-black rounded-lg p-5 pl-10 w-full">
                 <div className="flex justify-between">
-                    <div className="w-300  text-center">
+                    <div className="w-4/5 text-center">
                         <h1 className= "text-black text-2xl font-mono">DASHBOARD</h1>
 
                         <table>
                             <thead className="flex justify-between w-fit items-center text-m text-center font-bold font-mono border-2 border-whooshhgreen">
-                                <th className="w-60 p-2 border-2 border-black">TAG NUMBER</th>
-                                <th className="w-20 p-2 border-2 border-black">PRTY</th>
-                                <th className="w-40 p-2 border-2 border-black">CIRCUMFERENCE</th>
-                                <th className="w-40 p-2 border-2 border-black">WEIGHT</th>
-                                <th className="w-30 p-2 border-2 border-black">LANEREQ</th>
-                                <th className="w-20 p-2 border-2 border-black">LANE</th>
-                                <th className="w-40 p-2 border-2 border-black">SORT INFO</th>
-                                <th className="w-40 p-2 border-2 border-black">TIMESTAMP</th>
+                                <tr>
+                                    <th className="w-60 p-2 border-2 border-black">TAG NUMBER</th>
+                                    <th className="w-20 p-2 border-2 border-black">PRTY</th>
+                                    <th className="w-40 p-2 border-2 border-black">CIRCUMFERENCE</th>
+                                    <th className="w-40 p-2 border-2 border-black">WEIGHT</th>
+                                    <th className="w-30 p-2 border-2 border-black">LANEREQ</th>
+                                    <th className="w-20 p-2 border-2 border-black">LANE</th>
+                                    <th className="w-40 p-2 border-2 border-black">SORT INFO</th>
+                                    <th className="w-40 p-2 border-2 border-black">TIMESTAMP</th>
+                                </tr>
+                                
                             </thead>
                             <tbody>
                                 {fish.map(f =>(
@@ -77,9 +80,12 @@ const Dashboard = ()=>{
                         </table>
                         
                     </div>
-                    <div>
+                    <div className="w-1/5 border-2 border-black rounded-lg justifiy-center">
                         <h2 className="text-xl text-center">Priority Tag File</h2>
-                        <Dropzone></Dropzone>
+                        <div className="flex justify-center">
+                                <Dropzone></Dropzone>
+                        </div>
+                        
                     </div>
                 </div>
 
