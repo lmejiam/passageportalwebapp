@@ -37,37 +37,40 @@ const Dashboard = ()=>{
     }, []);
     
     return(
-        <>
-        <Header></Header>
+        <div className="bg-darkgray w-full">
+        <div className="pl-12 pr-12">
+            <Header></Header>
+        </div>    
         
-        <div className='flex justify-center items-center bg-darkgray p-20 pb-30' >
-            <div className="bg-lightgray border-3 border-black rounded-lg  h-200 min-w-450">
-                <div className="flex justify-between p-10">
+        
+        <div className='flex justify-center items-center bg-darkgray p-12 w-full' >
+            <div className="bg-lightgray border-3 border-black rounded-lg p-5 w-full">
+                <div className="flex justify-between">
                     <div className="w-300  text-center">
                         <h1 className= "text-black text-2xl font-mono">DASHBOARD</h1>
 
                         <table>
-                            <thead className="flex justify-between items-center text-xl font-bold font-mono border-2 border-whooshhgreen">
-                                <th className="p-5">TAG NUMBER</th>
-                                <th className="p-5">PRIORITY</th>
-                                <th className="p-5">CIRCUMFERENCE</th>
-                                <th className="p-5">WEIGHT</th>
-                                <th className="p-5">GATE</th>
-                                <th className="p-5">OUTPUTLANE</th>
-                                <th className="p-5">SORT INFO</th>
-                                <th className="p-5">TIMESTAMP</th>
+                            <thead className="flex justify-between w-fit items-center text-m font-bold font-mono border-2 border-whooshhgreen">
+                                <th className="w-40 p-2 border-2 border-black">TAG NUMBER</th>
+                                <th className="w-40 p-2 border-2 border-black">PRIORITY</th>
+                                <th className="w-40 p-2 border-2 border-black">CIRCUM</th>
+                                <th className="w-40 p-2 border-2 border-black">WEIGHT</th>
+                                <th className="w-40 p-2 border-2 border-black">GATE</th>
+                                <th className="w-40 p-2 border-2 border-black">OUTPUTLANE</th>
+                                <th className="w-40 p-2 border-2 border-black">SORT INFO</th>
+                                <th className="w-40 p-2 border-2 border-black">TIMESTAMP</th>
                             </thead>
                             <tbody>
                                 {fish.map(f =>(
-                                    <tr key={f.whooshh_id} className="flex justify-between items-center">
-                                        <td className="p-5">{f.tag_num}</td>
-                                        <td className="p-5">{f.priority}</td>
-                                        <td className="p-5">{f.circumference}</td>
-                                        <td className="p-5">{f.weight}</td>
-                                        <td className="p-5">{f.gate}</td>
-                                        <td className="p-5">{f.outputlane}</td>
-                                        <td className="p-5">{f.outputlanereason}</td>
-                                        <td className="p-5">{f.timestamp}</td>
+                                    <tr key={f.whooshh_id} className="flex justify-between items-center text-xs">
+                                        <td className="w-40 p-2 border-2 border-black">{f.tag_num}</td>
+                                        <td className="w-40 p-2 border-2 border-black">{f.priority}</td>
+                                        <td className="w-40 p-2 border-2 border-black">{f.circumference}</td>
+                                        <td className="w-40 p-2 border-2 border-black">{f.weight}</td>
+                                        <td className="w-40 p-2 border-2 border-black">{f.gate}</td>
+                                        <td className="w-40 p-2 border-2 border-black">{f.outputlane}</td>
+                                        <td className="w-40 p-2 border-2 border-black">{f.outputlanereason}</td>
+                                        <td className="w-40 p-2 border-2 border-black">{f.timestamp}</td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -75,7 +78,7 @@ const Dashboard = ()=>{
                         
                     </div>
                     <div>
-                        <h2 className="text-2xl text-center">Priority Tag File</h2>
+                        <h2 className="text-xl text-center">Priority Tag File</h2>
                         <Dropzone></Dropzone>
                     </div>
                 </div>
@@ -86,7 +89,7 @@ const Dashboard = ()=>{
             </div>
             
         </div>
-        </>
+        </div>
     )
 }
 export default Dashboard;

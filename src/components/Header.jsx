@@ -7,8 +7,8 @@ const Header = ()=>{
 
     
     return(
-        <div className="bg-darkgray pl-12 pr-12">
-        <div className='flex justify-around items-center border-3 border-black bg-lightgray min-w-450 rounded-l' >
+
+        <div className='flex justify-around items-center border-3 border-black bg-lightgray w-full rounded-lg' >
                 <div className= "flex justify-center m-5 bg-white p-5 border-2 border-darkgray rounded-lg w-50">
                     <img className="w-100 " src="../WhooshhLogo.png" alt="Whooshh Logo"/>
                 </div>
@@ -18,7 +18,6 @@ const Header = ()=>{
                         <li>Change Settings</li>
                     </ul>
                 </div>
-        </div>
         </div>
     )
 }

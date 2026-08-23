@@ -67,13 +67,13 @@ const Dropzone = () => {
 };
 
 return (
-    <div className="h-50 w-100 border-2 border-whooshhgreen bg-white rounded-3xl">
+    <div className="h-50 w-40 border-2 border-whooshhgreen bg-white rounded-3xl">
         <div className="size-full flex justify-center text-center items-center" {...getRootProps()}>
             <input className="items-center" {...getInputProps()} />
             {isDragActive ? (
                 <p className="font-mono text-l" > Drop files here</p>
             ) : (
-                <p className="font-mono text-l">Drag and drop some files here, or click to select Files</p>
+                <p className="font-mono text-l">Drag and drop files here, or click to select Files</p>
             )}  
         </div>
         <ul className="text-center mt-5">
