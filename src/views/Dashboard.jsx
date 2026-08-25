@@ -37,7 +37,7 @@ const Dashboard = ()=>{
     }, []);
     
     return(
-        <div className="bg-darkgray w-full h-screen">
+        <div className="bg-darkgray w-full h-screen min-w-450">
         <div className="pl-12 pr-12">
             <Header></Header>
         </div>    
