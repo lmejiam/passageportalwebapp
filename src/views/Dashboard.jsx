@@ -82,7 +82,7 @@ const Dashboard = ()=>{
                     </div>
                     <div className="w-1/5">
                         <h2 className="text-xl text-center">Priority Tag File</h2>
-                        <div className="flex justify-center">
+                        <div className="flexjustify-center">
                                 <Dropzone></Dropzone>
                         </div>
                         
