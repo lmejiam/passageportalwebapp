@@ -67,6 +67,7 @@ const Dropzone = () => {
 };
 
 return (
+    <div>
     <div className="h-50 w-50 border-2 border-whooshhgreen bg-white rounded-3xl">
         <div className="size-full flex justify-center text-center items-center" {...getRootProps()}>
             <input className="items-center" {...getInputProps()} />
@@ -92,6 +93,7 @@ return (
             ))}
             <li><button className="h-20 bg-whooshhgreen p-5 border-2 border-black rounded-2xl" type="button" onClick={handleSubmit}>Submit Files</button></li>
         </ul>
+    </div>
     </div>
     )
 }

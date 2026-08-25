@@ -37,13 +37,13 @@ const Dashboard = ()=>{
     }, []);
     
     return(
-        <div className="bg-darkgray w-full">
+        <div className="bg-darkgray w-full h-screen">
         <div className="pl-12 pr-12">
             <Header></Header>
         </div>    
         
         
-        <div className='flex justify-center items-center bg-darkgray p-12 w-full' >
+        <div className='flex justify-center bg-darkgray p-12 w-full min-h-3/4' >
             <div className="bg-lightgray border-3 border-black rounded-lg p-5 pl-10 w-full">
                 <div className="flex justify-between">
                     <div className="w-4/5 text-center">
@@ -80,7 +80,7 @@ const Dashboard = ()=>{
                         </table>
                         
                     </div>
-                    <div className="w-1/5 border-2 border-black rounded-lg justifiy-center">
+                    <div className="w-1/5">
                         <h2 className="text-xl text-center">Priority Tag File</h2>
                         <div className="flex justify-center">
                                 <Dropzone></Dropzone>
