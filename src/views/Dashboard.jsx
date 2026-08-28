@@ -17,7 +17,7 @@ const Dashboard = ()=>{
     useEffect(() => {
 
         const fetchFish = ()=> {
-                fetch('http://fishlrecognition.com/api/user/fish')
+                fetch('https://fishlrecognition.com/api/user/fish')
             .then(res => {
                 if (!res.ok) throw new Error('Request failed');
                 return res.json();
