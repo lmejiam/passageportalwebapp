@@ -14,7 +14,7 @@ const Login = ()=>{
                     <img className="w-100 " src="../WhooshhLogo.png" alt="Whooshh Logo"/>
                 </div>
                 <div className="flex justify-center m-10 mb-5">
-                    <h1 className= "text-black text-2xl font-mono">PASSAGE PORTAL ACCESS</h1>
+                    <h1 className= "text-black text-2xl font-mono">WHOOSHH FISHL RECOGNITION </h1>
                 </div>
                 <div className="flex justify-center mt-8">
                     <h1 className= "text-black text-l font-mono ">Please Enter your details: </h1>

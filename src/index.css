@@ -2,6 +2,10 @@
 
 @theme {
     --color-lightgray: #DBDBDB;
-    --color-darkgray: #6B6D72;
+    --color-ddgray: #6B6D72;
+    --color-darkgray: #363636;
     --color-whooshhgreen: #C3D600;
+
+    --container-page: 64rem;
 }
+

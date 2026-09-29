@@ -4,32 +4,55 @@ import axios from 'axios'
 import { useNavigate, Link } from "react-router-dom";
 import Header from "../components/Header";
 import Dropzone from "../components/Dropzone";
-
+import Summary from "../components/Summary";
+import Status from "../components/Status";
+import SortSettings from "../components/Sortsettings";
 
 const Dashboard = ()=>{
 
-    const FETCH_FISH_INTERVAL_MS = 3000;
+    const FETCH_INTERVAL_MS = 3000;
     
     const [fish, setFish] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [status, setStatus] = useState({  site : "Hemne",
+                                            computervision : "RUNNING",
+                                            sorting : "RUNNING"
+                                        });
+    
+    const [lanes, setLanes] = useState([
+                                                        { name: "LANE 0", destination: "BYPAS",   count: 1 },
+                                                        { name: "LANE 1", destination: "CULL",     count: 1 },
+                                                        { name: "LANE 2", destination: "NETPEN A", count: 1 },
+                                                        { name: "LANE 3", destination: "NETPEN B", count: 1 },
+                                                        { name: "LANE 4", destination: "NETPEN C", count: 1 },
+    ]);
 
     useEffect(() => {
 
-        const fetchFish = ()=> {
-                fetch('https://fishlrecognition.com/api/user/fish')
+        const fetchStatus = ()=> {
+                fetch('https://fishlrecognition.com/api/user/status')
             .then(res => {
                 if (!res.ok) throw new Error('Request failed');
                 return res.json();
             })
-            .then(data => setFish(data))
+            .then(data => {
+                setStatus(data)
+                setLanes(prev => [
+                            { ...prev[0], destination: data.l0_tag},
+                            { ...prev[1], destination: data.l1_tag},
+                            { ...prev[2], destination: data.l2_tag},
+                            { ...prev[3], destination: data.l3_tag},
+                            { ...prev[4], destination: data.l4_tag},
+]);
+            })
             .catch(err => setError(err.message))
             .finally(() => setLoading(false));
         }
 
-        fetchFish();
+        fetchStatus();
 
-        const intervalID = setInterval(fetchFish, FETCH_FISH_INTERVAL_MS);
+        const intervalID = setInterval(fetchStatus, FETCH_INTERVAL_MS);
 
         return () => clearInterval(intervalID);
 
@@ -37,64 +60,29 @@ const Dashboard = ()=>{
     }, []);
     
     return(
-        <div className="bg-darkgray w-full h-screen min-w-450">
-        <div className="pl-12 pr-12">
-            <Header></Header>
-        </div>    
+        <div className="w-full min-w-page h-screen">
+            <div className="pl-12 pr-12">
+                <Header></Header>
+            </div>    
         
-        
-        <div className='flex justify-center bg-darkgray p-12 w-full min-h-3/4' >
-            <div className="bg-lightgray border-3 border-black rounded-lg p-5 pl-10 w-full">
-                <div className="flex justify-between">
-                    <div className="w-4/5 text-center">
-                        <h1 className= "text-black text-2xl font-mono">DASHBOARD</h1>
-
-                        <table>
-                            <thead className="flex justify-between w-fit items-center text-m text-center font-bold font-mono border-2 border-whooshhgreen">
-                                <tr>
-                                    <th className="w-60 p-2 border-2 border-black">TAG NUMBER</th>
-                                    <th className="w-20 p-2 border-2 border-black">PRTY</th>
-                                    <th className="w-40 p-2 border-2 border-black">CIRCUMFERENCE</th>
-                                    <th className="w-40 p-2 border-2 border-black">WEIGHT</th>
-                                    <th className="w-30 p-2 border-2 border-black">LANEREQ</th>
-                                    <th className="w-20 p-2 border-2 border-black">LANE</th>
-                                    <th className="w-40 p-2 border-2 border-black">SORT INFO</th>
-                                    <th className="w-40 p-2 border-2 border-black">TIMESTAMP</th>
-                                </tr>
-                                
-                            </thead>
-                            <tbody>
-                                {fish.map(f =>(
-                                    <tr key={f.whooshh_id} className="flex justify-between items-center text-sm">
-                                        <td className="w-60 mt-10 mb-10">{f.tag_num}</td>
-                                        <td className="w-20">{f.priority}</td>
-                                        <td className="w-40">{f.circumference}</td>
-                                        <td className="w-40">{f.weight}</td>
-                                        <td className="w-30">{f.gate}</td>
-                                        <td className="w-20">{f.outputlane}</td>
-                                        <td className="w-40">{f.outputlanereason}</td>
-                                        <td className="w-40">{f.timestamp}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                        
-                    </div>
-                    <div className="w-1/5">
-                        <h2 className="text-xl text-center">Priority Tag File</h2>
-                        <div className="flexjustify-center">
-                                <Dropzone></Dropzone>
-                        </div>
-                        
-                    </div>
+            <div className="flex pl-12 pr-12 mt-5">
+                <div className="w-2/5">
+                    <Status site={status.site} computerVisionStatus={status.computervision} sortingStatus={status.sorting } ></Status>
+                    <Summary lanes={lanes}></Summary>
                 </div>
 
-                
-                
+                <div className="w-3/5">
+                    <SortSettings></SortSettings>
+                    <h2 className="text-xl text-center">Priority Tag File</h2>
+                    <div className="flex justify-center">            
+                        <Dropzone></Dropzone>                
+                    </div>                        
+                                
+                </div> 
+        
+            </div>                    
 
-            </div>
-            
-        </div>
+                
         </div>
     )
 }

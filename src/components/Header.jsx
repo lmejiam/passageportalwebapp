@@ -8,12 +8,12 @@ const Header = ()=>{
     
     return(
 
-        <div className='flex justify-around items-center border-3 border-black bg-lightgray w-full rounded-lg' >
-                <div className= "flex justify-center m-5 bg-white p-5 border-2 border-darkgray rounded-lg w-50">
+        <div className='flex items-center  bg-darkgray w-full rounded-lg' >
+                <div className= "flex ml-12 mt-5 bg-white p-5 border-2 border-white rounded-lg w-50">
                     <img className="w-100 " src="../WhooshhLogo.png" alt="Whooshh Logo"/>
                 </div>
                 <div className="w-200" >
-                    <ul className="flex justify-around font-mono text-xl">
+                    <ul className="flex justify-around font-mono text-xl text-white">
                         <li>Upload Files</li>
                         <li>Change Settings</li>
                     </ul>
