@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
- 
+
 // Same shape as the lanes prop on <Summary />, so one config drives both.
 const LANES = [
   { name: "LANE 0", destination: "BYPASS" },
@@ -8,23 +8,23 @@ const LANES = [
   { name: "LANE 3", destination: "NETPEN B" },
   { name: "LANE 4", destination: "NETPEN C" },
 ];
- 
+
 // Accept either ["LANE 0", ...] or [{ name, destination }, ...].
 function normalizeLanes(lanes) {
   return lanes.map((lane) =>
     typeof lane === "string" ? { name: lane, destination: "" } : lane
   );
 }
- 
+
 // What the operator reads; falls back to the lane name if there is no label.
 function laneText(lane) {
   return lane && lane.destination ? lane.destination : lane ? lane.name : "";
 }
- 
+
 function indexOfName(options, name) {
   return options.findIndex((lane) => lane.name === name);
 }
- 
+
 const DEFAULT_ASSIGNMENTS = [
   "LANE 1",
   "LANE 1",
@@ -37,10 +37,10 @@ const DEFAULT_ASSIGNMENTS = [
   "LANE 3",
   "LANE 1",
 ];
- 
+
 // Where fish go when they fall outside the override range.
 const DEFAULT_FALLBACK = "LANE 0";
- 
+
 function LaneDropdown({
   value,
   onChange,
@@ -55,7 +55,7 @@ function LaneDropdown({
   );
   const wrapRef = useRef(null);
   const selected = options.find((lane) => lane.name === value);
- 
+
   useEffect(() => {
     if (!open) return;
     const onDocDown = (e) => {
@@ -66,12 +66,12 @@ function LaneDropdown({
     document.addEventListener("mousedown", onDocDown);
     return () => document.removeEventListener("mousedown", onDocDown);
   }, [open]);
- 
+
   const commit = (index) => {
     onChange(options[index].name);
     setOpen(false);
   };
- 
+
   const onKeyDown = (e) => {
     if (e.key === "Escape") {
       setOpen(false);
@@ -98,7 +98,7 @@ function LaneDropdown({
       }
     }
   };
- 
+
   return (
     <div ref={wrapRef} className="relative w-40">
       <button
@@ -125,7 +125,7 @@ function LaneDropdown({
           &#9662;
         </span>
       </button>
- 
+
       {open && (
         <ul
           role="listbox"
@@ -164,11 +164,11 @@ function LaneDropdown({
     </div>
   );
 }
- 
+
 function OverrideControl({ value, onChange, priority }) {
   const inputClass =
     "w-14 rounded border border-whooshhgreen bg-black px-2 py-1 text-center text-sm text-white focus:outline-none focus:ring-1 focus:ring-whooshhgreen";
- 
+
   return (
     <div className="flex items-center justify-center gap-2">
       <input
@@ -191,7 +191,7 @@ function OverrideControl({ value, onChange, priority }) {
     </div>
   );
 }
- 
+
 export default function SortSettings({
   title = "SORT SETTINGS",
   lanes = LANES,
@@ -216,25 +216,25 @@ export default function SortSettings({
   const assignments = controlledAssignments || internal;
   const overrides = controlledOverrides || internalOverrides;
   const fallbacks = controlledFallbacks || internalFallbacks;
- 
+
   const handleChange = (index, laneName) => {
     const next = assignments.map((a, i) => (i === index ? laneName : a));
     if (onChange) onChange(next);
     if (!controlledAssignments) setInternal(next);
   };
- 
+
   const handleOverrideChange = (index, override) => {
     const next = overrides.map((o, i) => (i === index ? override : o));
     if (onOverrideChange) onOverrideChange(next);
     if (!controlledOverrides) setInternalOverrides(next);
   };
- 
+
   const handleFallbackChange = (index, laneName) => {
     const next = fallbacks.map((f, i) => (i === index ? laneName : f));
     if (onFallbackChange) onFallbackChange(next);
     if (!controlledFallbacks) setInternalFallbacks(next);
   };
- 
+
   return (
     <div
       className={
@@ -245,7 +245,7 @@ export default function SortSettings({
       <h1 className="mb-2 ml-3 text-xl font-semibold tracking-wide text-white">
         {title}
       </h1>
- 
+
       <div className="rounded-xl bg-neutral-950 px-5 pb-6 pt-5">
         {/* Column headers */}
         <div className="mb-4 flex text-xs font-bold text-white">
@@ -258,7 +258,7 @@ export default function SortSettings({
             <div className="flex-1 text-center">{fallbackLabel}</div>
           )}
         </div>
- 
+
         {/* Rows */}
         <div className="flex flex-col gap-3">
           {assignments.map((laneName, index) => (
