@@ -76,7 +76,7 @@ const Dashboard = ()=>{
             <div className="flex pl-12 pr-12 mt-5 justify-center">
                 <div className="w-2/5">
                     <Status site={status.site} computerVisionStatus={status.computervision} sortingStatus={status.sorting } ></Status>
-                    <Summary lanes={lanes}></Summary>
+                    <Summary lanes={lanes} dayCount={total}></Summary>
                 </div>
 
                 <div className="w-3/5">
