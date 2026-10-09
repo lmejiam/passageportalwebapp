@@ -72,8 +72,8 @@ export default function Status({
             />
             <Row 
                 label="SORTING" 
-                value=  {Number(sortingStatus) === 1 ? "RUNNING" : Number(sortingStatus) === 0 ? "STOPPED" : "NOT FOUND"} 
-                status= {Number(sortingStatus) === 1 ? "RUNNING" : Number(sortingStatus) === 0 ? "STOPPED" : "NOT FOUND"}
+                value=  {Number(sortingStatus) === 1 ? "RUNNING" : Number(sortingStatus) === 0 ? "STOPPED" : Number(sortingStatus) === 2 ?  "SCAN ONLY" : "NOT FOUND"} 
+                status= {Number(sortingStatus) === 1 ? "RUNNING" : Number(sortingStatus) === 0 ? "STOPPED" : Number(sortingStatus) === 2 ?  "SCAN ONLY" : "NOT FOUND"}
             />
         </div>
     </section>
