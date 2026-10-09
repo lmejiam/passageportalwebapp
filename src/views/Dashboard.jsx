@@ -81,7 +81,7 @@ const Dashboard = ()=>{
 
                     <div className="w-150 min-w-150">
                         <SortSettings lanes={lanes}></SortSettings>
-                        <h2 className="mb-2.5 ml-6 text-xl font-semibold tracking-wide text-white">UPLOAD TAG FILE</h2>
+                        <h2 className="mb-2.5 ml-8 text-xl font-semibold tracking-wide text-white">UPLOAD TAG FILE</h2>
                         <div className="flex justify-center px-5 pb-6">            
                             <Dropzone></Dropzone>                
                         </div>                        

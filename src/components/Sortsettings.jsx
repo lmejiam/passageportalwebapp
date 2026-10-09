@@ -193,7 +193,7 @@ function OverrideControl({ value, onChange, priority }) {
 }
 
 export default function SortSettings({
-  title = "SORT SETTINGS",
+  title = "SORT SETTINGS DISABLED",
   lanes = LANES,
   assignments: controlledAssignments,
   onChange,

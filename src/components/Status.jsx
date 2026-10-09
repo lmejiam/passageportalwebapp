@@ -58,7 +58,7 @@ export default function Status({
     <section
         className="w-full min-w-150 bg-darkgray px-2 pb-3 pt-2 font-sans"
     >
-        <h2 className="mb-2 ml-2 text-xl font-medium tracking-wide text-white">
+        <h2 className="mb-2 ml-3 text-xl font-medium tracking-wide text-white">
             SYSTEM STATUS
         </h2>
     
