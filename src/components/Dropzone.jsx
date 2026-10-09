@@ -67,33 +67,36 @@ const Dropzone = () => {
 };
 
 return (
-    <div>
-    <div className="h-50 w-50 border-2 border-whooshhgreen bg-white rounded-3xl">
-        <div className="size-full flex justify-center text-center items-center" {...getRootProps()}>
-            <input className="items-center" {...getInputProps()} />
-            {isDragActive ? (
-                <p className="font-mono text-l" > Drop files here</p>
-            ) : (
-                <p className="font-mono text-l">Drag and drop files here, or click to select Files</p>
-            )}  
+    <div className="flex items-center justify-around rounded-xl bg-neutral-950  w-full h-50">
+        <div className="h-30 w-50 border-2 border-whooshhgreen bg-white rounded-3xl">
+            <div className="size-full flex justify-center text-center items-center" {...getRootProps()}>
+                <input className="items-center" {...getInputProps()} />
+                {isDragActive ? (
+                    <p className="font-mono text-sm" > Drop files here</p>
+                ) : (
+                    <p className="font-mono text-sm">Drag and drop files here, or click to select Files</p>
+                )}  
+            </div>
         </div>
-        <ul className="text-center mt-5">
-            {files.map(file => (
-                <li key={file.name} className="flex justify-center w-50 ml-20">
-                    {file.name}
-                    <button
-                    className="ml-30 text-red-600"
-                    type="button"
-                    onClick={() => removeFile(file.name)}
-                    
-                >
-                    x
-            </button>
-                </li>
-            ))}
-            <li><button className="h-20 bg-whooshhgreen p-5 border-2 border-black rounded-2xl" type="button" onClick={handleSubmit}>Submit Files</button></li>
-        </ul>
-    </div>
+        <div className="w-1/3 border-2">
+            <ul className="text-center">
+                {files.map(file => (
+                    <li key={file.name} className="flex justify-center w-30 text-white">
+                        {file.name}
+                        <button
+                        className="ml-5 text-red-600"
+                        type="button"
+                        onClick={() => removeFile(file.name)}
+                        
+                    >
+                        X
+                </button>
+                    </li>
+                ))}
+                <li><button className="h-15 w-full bg-whooshhgreen p-5 border-2 border-black rounded-2xl justify-center flex items-center mt-10" type="button" onClick={handleSubmit}>Submit Files</button></li>
+            </ul>
+        </div>
+
     </div>
     )
 }

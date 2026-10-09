@@ -56,7 +56,7 @@ export default function Status({
 }) {
     return (
     <section
-        className="w-full bg-darkgray px-2 pb-3 pt-2 font-sans"
+        className="w-full min-w-150 bg-darkgray px-2 pb-3 pt-2 font-sans"
     >
         <h2 className="mb-2 ml-2 text-xl font-medium tracking-wide text-white">
             SYSTEM STATUS
@@ -67,10 +67,14 @@ export default function Status({
             <Row label="ACTIVE TAG FILE" value={activeTagFile} />
             <Row
                 label="COMPUTER VISION"
-                value={computerVisionStatus}
-                status={computerVisionStatus}
+                value=  {Number(computerVisionStatus) === 1 ? "RUNNING" : Number(computerVisionStatus) === 0 ? "STOPPED" : "NOT FOUND"}
+                status= {Number(computerVisionStatus) === 1 ? "RUNNING" : Number(computerVisionStatus) === 0 ? "STOPPED" : "NOT FOUND"}
             />
-            <Row label="SORTING" value={sortingStatus} status={sortingStatus} />
+            <Row 
+                label="SORTING" 
+                value=  {Number(sortingStatus) === 1 ? "RUNNING" : Number(sortingStatus) === 0 ? "STOPPED" : "NOT FOUND"} 
+                status= {Number(sortingStatus) === 1 ? "RUNNING" : Number(sortingStatus) === 0 ? "STOPPED" : "NOT FOUND"}
+            />
         </div>
     </section>
     );

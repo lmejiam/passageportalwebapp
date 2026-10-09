@@ -72,23 +72,24 @@ const Dashboard = ()=>{
             <div className="pl-12 pr-12">
                 <Header></Header>
             </div>    
-        
-            <div className="flex pl-12 pr-12 mt-5 justify-center">
-                <div className="w-2/5">
-                    <Status site={status.site} computerVisionStatus={status.computervision} sortingStatus={status.sorting } ></Status>
-                    <Summary lanes={lanes} dayCount={total}></Summary>
-                </div>
+            <div className="w-full flex justify-around mx-12 px-12">
+                <div className="flex min-w-350 mt-5">
+                    <div className="w-150 min-w-150">
+                        <Status site={status.site} computerVisionStatus={status.computervision} sortingStatus={status.sorting } ></Status>
+                        <Summary lanes={lanes} dayCount={total}></Summary>
+                    </div>
 
-                <div className="w-3/5">
-                    <SortSettings lanes={lanes}></SortSettings>
-                    <h2 className="text-xl text-center">Priority Tag File</h2>
-                    <div className="flex justify-center">            
-                        <Dropzone></Dropzone>                
-                    </div>                        
-                                
+                    <div className="w-150 min-w-150">
+                        <SortSettings lanes={lanes}></SortSettings>
+                        <h2 className="mb-2.5 ml-6 text-xl font-semibold tracking-wide text-white">UPLOAD TAG FILE</h2>
+                        <div className="flex justify-center px-5 pb-6">            
+                            <Dropzone></Dropzone>                
+                        </div>                        
+                                    
+                    </div> 
+            
                 </div> 
-        
-            </div>                    
+            </div>                
 
                 
         </div>

@@ -68,7 +68,7 @@ export default function Summary({
     maxBarHeight = 110,
 }) {
     return (
-    <div className="w-full bg-darkgray px-2 pb-3 pt-2 font-['Open_Sans',ui-sans-serif,system-ui,sans-serif]">
+    <div className="w-full bg-darkgray px-2 pb-3 pt-2 font-['Open_Sans',ui-sans-serif,system-ui,sans-serif] min-w-150">
         <h1 className="mb-2.5 ml-6 text-xl font-semibold tracking-wide text-white">
         {title}
         </h1>
