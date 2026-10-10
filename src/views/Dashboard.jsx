@@ -17,9 +17,10 @@ const Dashboard = ()=>{
     const [total, setTotal] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [status, setStatus] = useState({  site : "Hemne",
-                                            computervision : "RUNNING",
-                                            sorting : "RUNNING"
+    const [status, setStatus] = useState({  site_name : "NORWAY",
+                                            computervision : "STOPPED",
+                                            sorting : "STOPPED",
+                                            activetagfile: "NULL"
                                         });
             
     
@@ -75,8 +76,16 @@ const Dashboard = ()=>{
             <div className="w-full flex justify-around mx-12 px-12">
                 <div className="flex min-w-350 mt-5">
                     <div className="w-150 min-w-150">
-                        <Status site={status.site} computerVisionStatus={status.computervision} sortingStatus={status.sorting } ></Status>
-                        <Summary lanes={lanes} dayCount={total}></Summary>
+                        <Status 
+                            site={status.site_name}
+                            computerVisionStatus={status.computervision} 
+                            sortingStatus={status.sorting} 
+                            activetagfile={status.activetagfile} >
+                        </Status>
+                        <Summary 
+                            lanes={lanes} 
+                            dayCount={total}>
+                        </Summary>
                     </div>
 
                     <div className="w-150 min-w-150">
@@ -89,8 +98,7 @@ const Dashboard = ()=>{
                     </div> 
             
                 </div> 
-            </div>                
-
+            </div> 
                 
         </div>
     )

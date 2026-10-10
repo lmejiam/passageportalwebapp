@@ -9,6 +9,7 @@ const COLORS = {
 const STATUS_COLORS = {
     RUNNING: { base: "#4cc93f", glow: "rgba(76, 201, 63, 0.45)" },
     INITIALIZING: { base: "#e3db3a", glow: "rgba(227, 219, 58, 0.45)" },
+    SCANONLY: { base: "#e3db3a", glow: "rgba(227, 219, 58, 0.45)" },
     STOPPED: { base: "#e0413a", glow: "rgba(224, 65, 58, 0.45)" },
     DISABLED: { base: "#c8c8c8", glow: "rgba(200, 200, 200, 0.25)" },
 };
@@ -72,8 +73,8 @@ export default function Status({
             />
             <Row 
                 label="SORTING" 
-                value=  {Number(sortingStatus) === 1 ? "RUNNING" : Number(sortingStatus) === 0 ? "STOPPED" : Number(sortingStatus) === 2 ?  "SCAN ONLY" : "NOT FOUND"} 
-                status= {Number(sortingStatus) === 1 ? "RUNNING" : Number(sortingStatus) === 0 ? "STOPPED" : Number(sortingStatus) === 2 ?  "SCAN ONLY" : "NOT FOUND"}
+                value=  {Number(sortingStatus) === 1 ? "RUNNING" : Number(sortingStatus) === 0 ? "STOPPED" : Number(sortingStatus) === 2 ?  "SCANONLY" : "NOT FOUND"} 
+                status= {Number(sortingStatus) === 1 ? "RUNNING" : Number(sortingStatus) === 0 ? "STOPPED" : Number(sortingStatus) === 2 ?  "SCANONLY" : "NOT FOUND"}
             />
         </div>
     </section>
