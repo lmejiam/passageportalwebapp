@@ -80,7 +80,7 @@ const Dashboard = ()=>{
                             site={status.site_name}
                             computerVisionStatus={status.computervision} 
                             sortingStatus={status.sorting} 
-                            activetagfile={status.activetagfile} >
+                            activeTagFile={status.activetagfile} >
                         </Status>
                         <Summary 
                             lanes={lanes} 
