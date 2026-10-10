@@ -74,7 +74,7 @@ return (
                 {isDragActive ? (
                     <p className="font-mono text-sm" > Drop files here</p>
                 ) : (
-                    <p className="font-mono text-sm">Drag and drop files here, or click to select Files</p>
+                    <p className="font-mono text-sm">Drag and drop file here, or click to select File</p>
                 )}  
             </div>
         </div>
@@ -93,7 +93,7 @@ return (
                 </button>
                     </li>
                 ))}
-                <li><button className="h-15 w-full bg-whooshhgreen p-5 border-2 border-black rounded-2xl justify-center flex items-center mt-10" type="button" onClick={handleSubmit}>Submit Files</button></li>
+                <li><button className="h-15 w-full bg-whooshhgreen p-5 border-2 border-black rounded-2xl justify-center flex items-center mt-10" type="button" onClick={handleSubmit}>Submit File</button></li>
             </ul>
         </div>
 
