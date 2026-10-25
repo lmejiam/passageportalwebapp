@@ -53,7 +53,7 @@ const Dropzone = () => {
 
     try {
         const response = await
-        axios.post("https://fishlrognition.com/api/tags/upload", formData, {
+        axios.post("https://fishlrecognition.com/api/tags/upload", formData, {
             onUploadProgress: (event) => {
                 if (event.total){
                     setProgress(Math.round((event.loaded * 100)/ event.total))
