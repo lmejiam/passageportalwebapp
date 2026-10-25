@@ -58,7 +58,7 @@ const Dashboard = ()=>{
             { ...prev[4], destination: statusData.l4_tag, count: countsData.lane4 },
         ]);
         setTotal(countsData.total)
-        setRemoteConnectionStatus(pingData)
+        setRemoteConnectionStatus(pingData.remoteConnectionStatus)
         setError(null);
             } catch (err) {
         setError(err.message);
