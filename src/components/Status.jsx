@@ -54,6 +54,7 @@ export default function Status({
     activeTagFile = "hemne/sort_file_2028.csv",
     computerVisionStatus = "RUNNING",
     sortingStatus = "RUNNING",
+    remoteConnectionStatus = "NOT FOUND"
 }) {
     return (
     <section
@@ -63,19 +64,29 @@ export default function Status({
             SYSTEM STATUS
         </h2>
     
-            <div className="rounded-xl bg-black px-8 pb-6 pt-10">
+        <div className="rounded-xl bg-black px-8 pb-6 pt-10">
+            <Row
+                label="REMOTE CONNECTION"
+                value= {remoteConnectionStatus}
+                status= {remoteConnectionStatus === "FOUND" ? "RUNNING" : "STOPPED"}
+            />
             <Row label="SITE" value={site} />
             <Row label="ACTIVE TAG FILE" value={activeTagFile} />
-            <Row
-                label="COMPUTER VISION"
-                value=  {Number(computerVisionStatus) === 1 ? "RUNNING" : Number(computerVisionStatus) === 0 ? "STOPPED" : "NOT FOUND"}
-                status= {Number(computerVisionStatus) === 1 ? "RUNNING" : Number(computerVisionStatus) === 0 ? "STOPPED" : "NOT FOUND"}
-            />
-            <Row 
-                label="SORTING" 
-                value=  {Number(sortingStatus) === 1 ? "RUNNING" : Number(sortingStatus) === 0 ? "STOPPED" : Number(sortingStatus) === 2 ?  "SCANONLY" : "NOT FOUND"} 
-                status= {Number(sortingStatus) === 1 ? "RUNNING" : Number(sortingStatus) === 0 ? "STOPPED" : Number(sortingStatus) === 2 ?  "SCANONLY" : "NOT FOUND"}
-            />
+            {remoteConnectionStatus !== "NOT FOUND" && (
+                <>
+                    <Row
+                        label="COMPUTER VISION"
+                        value=  {Number(computerVisionStatus) === 1 ? "RUNNING" : Number(computerVisionStatus) === 0 ? "STOPPED" : "NOT FOUND"}
+                        status= {Number(computerVisionStatus) === 1 ? "RUNNING" : Number(computerVisionStatus) === 0 ? "STOPPED" : "NOT FOUND"}
+                    />
+                    <Row
+                        label="SORTING"
+                        value=  {Number(sortingStatus) === 1 ? "RUNNING" : Number(sortingStatus) === 0 ? "STOPPED" : Number(sortingStatus) === 2 ?  "SCANONLY" : "NOT FOUND"}
+                        status= {Number(sortingStatus) === 1 ? "RUNNING" : Number(sortingStatus) === 0 ? "STOPPED" : Number(sortingStatus) === 2 ?  "SCANONLY" : "NOT FOUND"}
+                    />
+                </>
+            )}
+
         </div>
     </section>
     );

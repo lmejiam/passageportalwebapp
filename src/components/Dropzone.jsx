@@ -1,10 +1,15 @@
 import React from "react";
 import { useState, useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
+import axios from 'axios'
+
 
 const Dropzone = () => {
 
     const [files, setFiles] = useState([]) 
+
+    const [progress, setProgress] = useState(0)
+    const [uploadState, setUploadState] = useState("idle")
 
     const onDrop = useCallback(acceptedFiles => {
         if (acceptedFiles?.length){
@@ -20,8 +25,8 @@ const Dropzone = () => {
             maxFiles: 1,
             multiple: false,
             accept: {
-                        "text/plain": [".txt", ".ini", ".config",".csv"],
-                        "application/octet-stream": [".ini", ".config",".csv"],
+                        "text/plain": [".txt",".csv"],
+                        "application/octet-stream": [".csv"],
                         "text/csv": [".csv"],
                         "application/vnd.ms-excel": [".csv"]
             }
@@ -47,22 +52,26 @@ const Dropzone = () => {
     });
 
     try {
-        const response = await fetch("https://fishlrecognition.com/api/tags/upload", {
-            method: "POST",
-            body: formData,
+        const response = await
+        axios.post("https://fishlrognition.com/api/tags/upload", formData, {
+            onUploadProgress: (event) => {
+                if (event.total){
+                    setProgress(Math.round((event.loaded * 100)/ event.total))
+                }
+            },
         });
+        console.log("Upload successful:", response.data);
 
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.message || "Upload failed");
-        }
-
-        const data = await response.json();
-        console.log("Upload successful:", data);
-
+        setUploadState("done");
         setFiles([]);
     } catch (err) {
-        console.error("Upload error:", err);
+        console.error("Upload error:", err.response?.data?.message || err.message);
+        setUploadState("error");
+    } finally {
+        setTimeout(()=>{
+            setUploadState("idle");
+            setProgress(0);
+        }, 3000)
     }
 };
 
@@ -94,6 +103,22 @@ return (
                     </li>
                 ))}
                 <li><button className="h-15 w-full bg-whooshhgreen p-5 border-2 border-black rounded-2xl justify-center flex items-center mt-10" type="button" onClick={handleSubmit}>Submit File</button></li>
+                {uploadState !== "idle" && (
+                    <li className="mt-3">
+                        <div className="h-2 w-full overflow-hidden rounded-full bg-neutral-700">
+                            <div
+                                className={`h-full transition-all duration-200 ${uploadState === "error" ? "bg-red-600" : "bg-whooshhgreen"}`}
+                                style={{ width: `${progress}%` }}
+                            />
+                        </div>
+                        <p className="mt-1 text-sm text-white">
+                            {uploadState === "uploading" && `Uploading… ${progress}%`}
+                            {uploadState === "done" && "Upload complete"}
+                            {uploadState === "error" && "Upload failed"}
+                        </p>
+                    </li>
+                )}
+            
             </ul>
         </div>
 

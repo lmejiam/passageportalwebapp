@@ -25,12 +25,14 @@ const Dashboard = ()=>{
             
     
     const [lanes, setLanes] = useState([
-                                                        { name: "LANE 0", destination: "BYPAS",    sortoutput: '0', count: 1 },
+                                                        { name: "LANE 0", destination: "BYPASS",    sortoutput: '0', count: 1 },
                                                         { name: "LANE 1", destination: "CULL",     sortoutput: '1', count: 1 },
                                                         { name: "LANE 2", destination: "NETPEN A", sortoutput: '2', count: 1 },
                                                         { name: "LANE 3", destination: "NETPEN B", sortoutput: '3', count: 1 },
                                                         { name: "LANE 4", destination: "NETPEN C", sortoutput: '4', count: 1 },
     ]);
+
+    const [remoteConnectionStatus, setRemoteConnectionStatus] = useState("NOT FOUND");
 
     useEffect(() => {
         const fetchJson = async (url) => {
@@ -41,9 +43,10 @@ const Dashboard = ()=>{
 
         const fetchData = async () => {
         try {
-                const [statusData, countsData] = await Promise.all([
+                const [statusData, countsData, pingData] = await Promise.all([
                 fetchJson('https://fishlrecognition.com/api/user/status'),
                 fetchJson('https://fishlrecognition.com/api/user/counts'),
+                fetchJson("https://fishlrecognition.com/api/user/ping"),
         ]);
 
         setStatus(statusData);
@@ -55,6 +58,7 @@ const Dashboard = ()=>{
             { ...prev[4], destination: statusData.l4_tag, count: countsData.lane4 },
         ]);
         setTotal(countsData.total)
+        setRemoteConnectionStatus(pingData)
         setError(null);
             } catch (err) {
         setError(err.message);
@@ -80,7 +84,8 @@ const Dashboard = ()=>{
                             site={status.site_name}
                             computerVisionStatus={status.computervision} 
                             sortingStatus={status.sorting} 
-                            activeTagFile={status.activetagfile} >
+                            activeTagFile={status.activetagfile}
+                            remoteConnectionStatus={remoteConnectionStatus} >
                         </Status>
                         <Summary 
                             lanes={lanes} 
@@ -91,11 +96,22 @@ const Dashboard = ()=>{
                     <div className="w-150 min-w-150">
                         <SortSettings lanes={lanes}></SortSettings>
                         <h2 className="mb-2.5 ml-8 text-xl font-semibold tracking-wide text-white">UPLOAD TAG FILE</h2>
-                        <div className="flex justify-center px-5 pb-6">            
-                            <Dropzone></Dropzone>                
-                        </div>                        
+                        {
+                            remoteConnectionStatus !== "NOT FOUND" ?  (
+                                <div className="flex justify-center px-5 pb-6">            
+                                    <Dropzone></Dropzone>                
+                                </div>                        
+                            ) : (
+                                <div className="flex justify-center px-5 pb-6">
+                                    <div className="flex items-center justify-center rounded-xl bg-black w-full h-20">
+                                        <p className="text-white text-2xl">Remote System Not Found. Cannot Upload Tags</p>
+                                    </div>
                                     
-                    </div> 
+                                </div>
+                                
+                            )
+                        }
+                    </div>
             
                 </div> 
             </div> 

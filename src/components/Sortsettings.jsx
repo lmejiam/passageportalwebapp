@@ -246,7 +246,7 @@ export default function SortSettings({
         {title}
       </h1>
 
-      <div className="rounded-xl bg-neutral-950 px-5 pb-6 pt-5">
+      <div className="rounded-xl bg-black px-5 pb-6 pt-5">
         {/* Column headers */}
         <div className="mb-4 flex text-xs font-bold text-white">
           <div className="w-24 text-center">PRIORITY</div>
