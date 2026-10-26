@@ -30,14 +30,14 @@ const UploadedImages = () => {
                 {error && <p className="text-red-600">{error}</p>}
                 {!error && images.length === 0 && <p className="text-white">No images found</p>}
 
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-6 gap-4">
                     {images.map(image => (
                         <a key={image.name} href={`${SERVER_URL}${image.url}`} target="_blank" rel="noreferrer">
                             <img
                                 src={`${SERVER_URL}${image.url}`}
                                 alt={image.name}
                                 loading="lazy"
-                                className="h-40 w-full rounded object-cover"
+                                className="h-20 w-full rounded object-cover"
                             />
                             <p className="mt-1 truncate text-xs text-neutral-400">{image.name}</p>
                         </a>
