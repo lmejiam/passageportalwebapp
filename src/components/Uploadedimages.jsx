@@ -1,25 +1,47 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const SERVER_URL = "https://fishlrecognition.com";
+const PAGE_SIZE = 50;
 
 const UploadedImages = () => {
     const [images, setImages] = useState([]);
+    const [total, setTotal] = useState(0);
+    const [hasMore, setHasMore] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchImages = async () => {
-            try {
-                const res = await fetch(`${SERVER_URL}/api/user/images`);
-                if (!res.ok) throw new Error("Failed to load images");
-                setImages(await res.json());
-                setError(null);
-            } catch (err) {
-                setError(err.message);
-            }
-        };
+    // Lets us cancel the request in flight when the page is left
+    const controllerRef = useRef(null);
 
-        fetchImages();
+    const loadImages = async (offset) => {
+        controllerRef.current?.abort();
+        const controller = new AbortController();
+        controllerRef.current = controller;
+
+        setLoading(true);
+        try {
+            const res = await fetch(
+                `${SERVER_URL}/api/user/images?offset=${offset}&limit=${PAGE_SIZE}`,
+                { signal: controller.signal }
+            );
+            if (!res.ok) throw new Error("Failed to load images");
+            const data = await res.json();
+
+            setImages(prev => offset === 0 ? data.images : [...prev, ...data.images]);
+            setTotal(data.total);
+            setHasMore(data.hasMore);
+            setError(null);
+        } catch (err) {
+            if (err.name !== "AbortError") setError(err.message);
+        } finally {
+            if (controllerRef.current === controller) setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        loadImages(0);
+        return () => controllerRef.current?.abort();
     }, []);
 
     return (
@@ -28,7 +50,10 @@ const UploadedImages = () => {
 
             <div className="rounded-xl bg-neutral-950 px-5 pb-6 pt-5">
                 {error && <p className="text-red-600">{error}</p>}
-                {!error && images.length === 0 && <p className="text-white">No images found</p>}
+                {!error && !loading && images.length === 0 && <p className="text-white">No images found</p>}
+                {images.length > 0 && (
+                    <p className="mb-3 text-sm text-neutral-400">Showing {images.length} of {total}</p>
+                )}
 
                 <div className="grid grid-cols-6 gap-4">
                     {images.map(image => (
@@ -43,6 +68,19 @@ const UploadedImages = () => {
                         </a>
                     ))}
                 </div>
+
+                {loading && <p className="mt-4 text-center text-white">Loading…</p>}
+                {!loading && hasMore && (
+                    <div className="mt-4 flex justify-center">
+                        <button
+                            type="button"
+                            className="rounded-lg bg-whooshhgreen px-6 py-2 font-semibold text-black"
+                            onClick={() => loadImages(images.length)}
+                        >
+                            Load more
+                        </button>
+                    </div>
+                )}
             </div>
         </section>
     );
