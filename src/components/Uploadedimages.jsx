@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect, useRef } from "react";
 
 const SERVER_URL = "https://fishlrecognition.com";
-const PAGE_SIZE = 50;
+const PAGE_SIZE = 24;
 
 const UploadedImages = () => {
     const [images, setImages] = useState([]);
